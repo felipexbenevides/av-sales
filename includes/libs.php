@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" media="screen" href="css/av.css" />
+<script src="js/app.js" type="text/javascript"></script>
 
 <!-- <script src="http://192.168.1.7/av-sales/external/"></script> -->
 <!-- <link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/"> -->
@@ -21,16 +22,13 @@
 <link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.theme.css">
 <script src="external/jquery-ui/jquery-ui.js"></script>
 
-
- 
-
-
 <script>
   $( ()=> {
     var tabTitle = $( "#tab_title" ),
       tabContent = $( "#tab_content" ),
       tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
       tabCounter = 1;
+      gridCounter = 1;
  
     var tabs = $( "#tabs" ).tabs();
  
@@ -71,6 +69,30 @@
       tabs.tabs( "refresh" );
       tabCounter++;
     }
+
+
+
+
+    function addTabPesquisa() {
+      var label = 'Pesquisar',
+        id = "tabs-" + tabCounter,
+        li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+        tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+ 
+      tabs.find( ".ui-tabs-nav" ).append( li );
+      tabs.append( "<div id='" + id + "'></div>" );
+      tabs.tabs( "refresh" );
+      
+      setGrid(2,id);
+      createGridPedidos(gridCounter-2);
+      createGridPedido(gridCounter-1);
+      $('#ui-id-'+tabCounter).click();
+      tabCounter++;
+    }    
+
+
+
+
     function tab(title,url=null) {
       var label = title || tabTitle.val() || "Tab " + tabCounter,
         id = "tabs-" + tabCounter,
@@ -90,7 +112,7 @@
  
     // AddTab button: just opens the dialog
     $( "#Pesquisar" ).click((e)=>{
-        tab('Pedidos','pesquisar');
+        addTabPesquisa();
     });
     //   .on( "click", function() {
     //     // dialog.dialog( "open" );
