@@ -51,7 +51,8 @@ $(document).ready(()=>{
                 {name:'unit_itped',index:'unit_itped', width:60, sorttype:"float"},		
                 {name:'qtdd_itped',index:'qtdd_itped', width:20},		
                 {name:'total_itped',index:'total_itped', width:80, sorttype:"float"}		
-            ]
+            ],
+            caption:'Pedido Selecionado'
         };
         createGrid(options,'avgrid-'+id,'local','grid'+id);        
     }
@@ -65,6 +66,7 @@ $(document).ready(()=>{
                 {name:'tt_ped',index:'tt_ped', width:60, align:"right",sorttype:"float", align:"right"},	
                 {name:'obs_ped',index:'obs_ped', width:250}		
             ],
+            caption:'Últimos pedidos',
             onSelectRow:(rowid,status,e)=>{
                 data = $('#grid'+id).jqGrid("getLocalRow", rowid);
                 $.get( "oci_ped.php?NR_PED="+data.nr_ped, ( data )=> {

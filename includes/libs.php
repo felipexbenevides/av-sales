@@ -21,7 +21,24 @@
 <link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.structure.css">
 <link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.theme.css">
 <script src="external/jquery-ui/jquery-ui.js"></script>
-
+<style>
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* background-color: #2196F3; */
+  /* padding: 10px; */
+  grid-gap: 10px 10px;
+}
+.grid-item {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  /* border: 1px dashed rgba(0, 0, 0, 0.8); */
+  /* padding: 20px; */
+  /* font-size: 30px; */
+  text-align: center;
+  font-size: 0.8em;
+  font-family: 'Courier New', Courier, monospace;
+}
+</style>
 <script>
   $( ()=> {
     var tabTitle = $( "#tab_title" ),

@@ -9,7 +9,7 @@
                 t013.loca_qtdd,
                 t.unit_itped, 
                 t.qtdd_itped, 
-                t.total_itped 
+                ROUND(t.total_itped,2 ) as total_itped
             from arqt211 t 
             left join arqt008 t008 on t008.codi_prod = t.codi_itped
             left join arqt013 t013 on t013.codi_qtdd = t.codi_itped
