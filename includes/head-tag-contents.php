@@ -7,7 +7,7 @@
 
 <?php include("libs.php");?>
 
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
 <style>
 	#main-content {
 		margin-top:20px;
@@ -47,6 +47,10 @@
   color: white;
   background-color: #111;
 }
+html, body {
+    height: 100%;
+    width: 100%;
 
+}
 </style>
 

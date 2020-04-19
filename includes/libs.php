@@ -1,25 +1,36 @@
+<link rel="stylesheet" type="text/css" media="screen" href="css/av.css" />
+
 <!-- <script src="http://192.168.1.7/av-sales/external/"></script> -->
 <!-- <link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/"> -->
 
 <!-- JQUERY -->
-<script src="http://192.168.1.7/av-sales/external/jquery/jquery-3.5.0.min.js"></script>
+<!-- <script src="http://192.168.1.7/av-sales/external/jquery/jquery-3.5.0.min.js"></script> -->
+<!-- JQGRID -->
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+ 
+<script src="js/jquery-3.5.0.min.js" type="text/javascript"></script>
+<script src="js/i18n/grid.locale-en.js" type="text/javascript"></script>
+<script src="js/jquery.jqGrid.min.js" type="text/javascript"></script>
+
 
 <!-- JQUERY UI -->
-<link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/jquery-ui/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/jquery-ui/jquery-ui.structure.css">
-<link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/jquery-ui/jquery-ui.theme.css">
-<script src="http://192.168.1.7/av-sales/external/jquery-ui/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="external/jquery-ui/jquery-ui.theme.css">
+<script src="external/jquery-ui/jquery-ui.js"></script>
 
-<!-- JQGRID -->
-<script src="http://192.168.1.7/av-sales/external/jquery-jqgrid/js/jquery.jqGrid.min.js"></script>
-<link rel="stylesheet" type="text/css" href="http://192.168.1.7/av-sales/external/jquery-jqgrid/css/ui.jqgrid-bootstrap4.css">
+
+ 
+
 
 <script>
-  $( function() {
+  $( ()=> {
     var tabTitle = $( "#tab_title" ),
       tabContent = $( "#tab_content" ),
       tabTemplate = "<li><a href='#{href}'>#{label}</a> <span class='ui-icon ui-icon-close' role='presentation'>Remove Tab</span></li>",
-      tabCounter = 2;
+      tabCounter = 1;
  
     var tabs = $( "#tabs" ).tabs();
  
@@ -60,9 +71,27 @@
       tabs.tabs( "refresh" );
       tabCounter++;
     }
+    function tab(title,url=null) {
+      var label = title || tabTitle.val() || "Tab " + tabCounter,
+        id = "tabs-" + tabCounter,
+        li = $( tabTemplate.replace( /#\{href\}/g, "#" + id ).replace( /#\{label\}/g, label ) ),
+        tabContentHtml = tabContent.val() || "Tab " + tabCounter + " content.";
+        
+      tabs.find( ".ui-tabs-nav" ).append( li );
+      tabs.append( "<div id='" + id + "'><p>" + tabContentHtml + "</p></div>" );
+      tabs.tabs( "refresh" );
+      tabCounter++;
+      if(url){
+        $.get( "includes/page/"+url+".php", function( data ) {
+            $('#'+id).html(data);
+        });
+      }  
+    }    
  
     // AddTab button: just opens the dialog
-    // $( "#Pesquisar" )
+    $( "#Pesquisar" ).click((e)=>{
+        tab('Pedidos','pesquisar');
+    });
     //   .on( "click", function() {
     //     // dialog.dialog( "open" );
     //     addTab();
@@ -83,4 +112,5 @@
       }
     });
   } );
-  </script>
+
+</script>
