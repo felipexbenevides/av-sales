@@ -3,7 +3,7 @@ function setGrid (num,id) {
         switch (num) {
             case 2:
                 console.log('grid');
-                $('#'+id).html('<div class="grid-container"><div id="avgrid-'+gridCounter+'" data-grid="'+gridCounter+'" class="grid-item">a</div><div id="avgrid-'+(gridCounter+1)+'" data-grid="'+(gridCounter+1)+'" class="grid-item">b</div></div>');
+                $('#'+id).html('<div class="grid-container"><span id="avspan-'+gridCounter+'"><div id="avgrid-'+gridCounter+'" data-grid="'+gridCounter+'" class="grid-item">a</div></span><span id="avspan-'+(gridCounter+1)+'"><div id="avgrid-'+(gridCounter+1)+'" data-grid="'+(gridCounter+1)+'" class="grid-item">b</div></span></div>');
                 gridCounter++;
                 gridCounter++;
                 resolve(id+' '+num);
@@ -30,12 +30,13 @@ function createGrid (options,selector='avgrid-1',source='oci_ped.php',id='grid1'
         gridOptions = {
             url:source,
             datatype: 'json',
-            height: 'auto',
+            height: '400px',
             width: 'auto',
             altRows: true,
             loadonce: true,
-            rowNum: 20,
-            rowList: [10,20,30]
+            // rowNum: 10,
+            scroll:true
+            
         };
         if(source == "local"){
             gridOptions.datatype = 'local';

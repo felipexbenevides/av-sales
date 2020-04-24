@@ -19,6 +19,7 @@ include("includes/navigation.php");
 <?php 
 include("includes/footer.php");
 ?>
+<script src="js/test.js" type="text/javascript"></script>
 
 </body>
 </html>
