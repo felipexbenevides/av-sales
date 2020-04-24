@@ -100,6 +100,7 @@
                 array_push($result['prod'],array("codi_itped"=>$row[0],"desc_prod"=>$row[1],"codifab_prod"=>$row[2], "loca_qtdd"=>$row[3], "unit_itped"=>$row[4],"qtdd_itped"=>$row[5],"total_itped"=>$row[6]));
                 $i++;
             }
+            // echo $query.'<br>';
         $query = "select DECODE(t.stat_ped, 'A', 'ABERTO', 'B','NO CAIXA', 'C','CANCELADO','E','FATURADO', t.stat_ped) as stat_ped,
         t007.nome_cli,
         DECODE(t204.port_notafrag, 1, 'A VISTA',
@@ -114,6 +115,8 @@
         foreach ($oci->select($query) as $row) {
             array_push($result['ped'],$row);
         }
+        // echo $query.'<br>';
+
         echo json_encode($result,512);        
     }
     /**

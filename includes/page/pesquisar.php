@@ -55,7 +55,8 @@
             ],
             caption:'Últimos pedidos',
             onSelectRow:(rowid,status,e)=>{
-                data = $('#grid'+id).jqGrid("getLocalRow", rowid);
+                data = $('#grid'+id).jqGrid("getRowData", rowid);
+                console.log(data);
                 $.get( "oci_ped.php?OP=DADOSPEDIDO&NR_PED="+data.nr_ped, ( data )=> {
                     jsonData = JSON.parse(data);
                     $('#grid'+(id+1)).clearGridData(true); 
@@ -66,7 +67,6 @@
                     $('#portador-'+(id+1)).val(jsonData.ped[0]['PORT_NOTAFRAG']);
                     $('#status-'+(id+1)).val(jsonData.ped[0]['STAT_PED']);
                 });
-
             },
             // datatype: 'json',
             height: '400px',
