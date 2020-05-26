@@ -18,3 +18,4 @@ bem como uma função de consulta:
     return ($conn->query($query));
 }
 ```
+![alt text](https://raw.githubusercontent.com/felipexbenevides/av-sales/master/files/screenshot1.jpg)
